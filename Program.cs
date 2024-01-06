@@ -1,66 +1,72 @@
-﻿        Console.WriteLine("Erişim Belirleyiciler ve Kurucu Fonksiyonlar");
-        Console.WriteLine("Personel 1:");
+﻿using System;
 
-        Shopping personellist = new Shopping("Taha","BÖREKCİ",351,"Sales");/*Personel 3 kod bloğunda uzun uzaya shoppersonel metodunu kullanmak yerine daha temiz ve kısa b
-        bir şekilde kullandık.*/
-        personellist.shoppersonel();
-
-        Console.WriteLine("*****************************************************");/*Burada ise işe yeni başlayan bir personelin sadece
-        adı ve soyadı belli olduğu için bu girdileri kullandık.*/
-        Shopping personellist2 = new Shopping("Hakan","BULUT");
-        personellist.shoppersonel();
-
-        Console.WriteLine("*********Personel 3******************");
-        Shopping personellist3 = new Shopping();
-        personellist2.name= "Barış";
-        personellist2.surname= "AKAN";
-        personellist.personelno=355;
-        personellist2.department="administrator";
-        personellist2.shoppersonel();
-        
-
-
-    
-
-
-class Shopping
+namespace AccessModifiersAndConstructors
 {
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Access Modifiers and Constructors");
+            Console.WriteLine("Personnel 1:");
 
-public string name;
-public string surname;
-public int personelno;
-public string department;
+            // Creating an instance of the Shopping class with all information provided
+            Shopping personnelList1 = new Shopping("Taha", "BÖREKCİ", 351, "Sales");
+            personnelList1.DisplayPersonnel();
+            Console.WriteLine("*****************************");
 
-public Shopping(string Name, string Surname, int Personelno, string Department)
-{
-  this.name = Name;
-  this.surname = Surname;
-  this.personelno = Personelno;
-  this.department = Department;
+            Console.WriteLine("*****************************************************");
 
+            // Creating an instance of the Shopping class with only name and surname provided
+            Shopping personnelList2 = new Shopping("Hakan", "BULUT");
+            personnelList2.DisplayPersonnel();
 
-}
+            Console.WriteLine("*********Personnel 3******************");
 
-public Shopping(string Name,string Surname)//Yukarıdaki Shopping metodunun kısaltılmış hali hem temiz hemde daha az yer kaplıyor.
+            // Creating an instance of the Shopping class without providing any information initially
+            Shopping personnelList3 = new Shopping();
+            personnelList3.Name = "Barış";
+            personnelList3.Surname = "AKAN";
+            personnelList3.PersonnelNo = 355;
+            personnelList3.Department = "Administrator";
+            personnelList3.DisplayPersonnel();
+        }
+    }
 
-{
-    this.name=Name;
-    this.surname=Surname;
+    // Shopping class definition
+    class Shopping
+    {
+        // Properties for the shopping personnel
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public int PersonnelNo { get; set; }
+        public string Department { get; set; }
 
-}
-public Shopping(){}//Alttaki shoppersonel metodunun hata vermemesi adına yazılması gerekiyor.
+        // Constructor with all information provided
+        public Shopping(string name, string surname, int personnelNo, string department)
+        {
+            Name = name;
+            Surname = surname;
+            PersonnelNo = personnelNo;
+            Department = department;
+        }
 
+        // Constructor with only name and surname provided (a shortened version)
+        public Shopping(string name, string surname)
+        {
+            Name = name;
+            Surname = surname;
+        }
 
-public void shoppersonel()//Mağaza personel bilgilerini yazdıran metot
-{
-   Console.WriteLine("Personel name:{0}",name);
-   Console.WriteLine("Personel surname:{0}",surname);
-   Console.WriteLine("Personel PersonelNo:{0}",personelno);
-   Console.WriteLine("Personel department:{0}",department);
+        // Default constructor needed for the shoppersonel method not to produce errors
+        public Shopping() { }
 
-}
-
-
-
-
+        // Method to display shopping personnel information
+        public void DisplayPersonnel()
+        {
+            Console.WriteLine("Personnel Name: {0}", Name);
+            Console.WriteLine("Personnel Surname: {0}", Surname);
+            Console.WriteLine("Personnel PersonnelNo: {0}", PersonnelNo);
+            Console.WriteLine("Personnel Department: {0}", Department);
+        }
+    }
 }
